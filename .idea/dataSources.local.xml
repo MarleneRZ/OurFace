@@ -4,5 +4,9 @@
     <data-source name="SQLite -" uuid="f0304f19-60d9-4d57-a798-ab50f65d5fad">
       <secret-storage>memory</secret-storage>
     </data-source>
+    <data-source name="Sqlite (Xerial) - development.sqlite3" uuid="9ada2292-775e-476a-ab01-39bec7a8a19e">
+      <secret-storage>master_key</secret-storage>
+      <auth-required>false</auth-required>
+    </data-source>
   </component>
 </project>

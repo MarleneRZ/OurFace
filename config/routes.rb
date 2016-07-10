@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   resources :posts
 
+
+
+
+
+  #root to: "new_user_session_path"
   root to: "posts#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

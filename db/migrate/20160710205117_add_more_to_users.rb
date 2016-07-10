@@ -1,0 +1,6 @@
+class AddMoreToUsers < ActiveRecord::Migration
+  def change
+    add_column :users, :birthday, :date
+    add_column :users, :website, :string
+  end
+end
