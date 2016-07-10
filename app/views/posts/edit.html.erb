@@ -1,6 +1,19 @@
-<h1>Editing Post</h1>
+<div class="container-fluid">
+  <div class="col-md-6">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-horizontal">
+            <legend class="text-primary">Edit Post</legend>
+            <div class="control-group">
+              <%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+              <%= link_to 'Show', @post %> |
+              <%= link_to 'Back', posts_path %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
