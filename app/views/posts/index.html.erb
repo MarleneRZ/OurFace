@@ -1,34 +1,33 @@
-
 <p id="notice"><%= notice %></p>
 
 <div class="container-fluid">
   <div class="row">
 
-        <div class="col-xs-12 col-sm-6 col-md-6">
-          <h3 class="text-center text-primary">
+    <div class="col-xs-12 col-sm-6 col-md-6">
+      <h3 class="text-center text-primary">
 
-          </h3>
-          <div class="well well-sm">
-            <div class="row">
-              <div class="col-sm-6 col-md-4">
-                <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
-              </div>
-              <div class="col-sm-6 col-md-8">
-                <h4><%=current_user.name%></h4>
-                <small><%=current_user.location%> <i class="glyphicon glyphicon-map-marker">
-                </i></small>
-                <p>
-                  <i class="glyphicon glyphicon-envelope"></i><%=current_user.email%>
-                  <br />
-                  <i class="glyphicon glyphicon-globe"></i><a href="/"><%=current_user.website%></a>
-                  <br />
-                  <i class="glyphicon glyphicon-gift"></i><%=current_user.birthday%>
-                <br />
-                <i class="glyphicon glyphicon-book"></i><%=current_user.interests%></p>
-              </div>
-            </div>
+      </h3>
+      <div class="well well-sm">
+        <div class="row">
+          <div class="col-sm-6 col-md-4">
+            <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive"/>
+          </div>
+          <div class="col-sm-6 col-md-8">
+            <h4><%= current_user.name %></h4>
+            <small><%= current_user.location %> <i class="glyphicon glyphicon-map-marker">
+            </i></small>
+            <p>
+              <i class="glyphicon glyphicon-envelope"></i><%= current_user.email %>
+              <br/>
+              <i class="glyphicon glyphicon-globe"></i><a href="/"><%= current_user.website %></a>
+              <br/>
+              <i class="glyphicon glyphicon-gift"></i><%= current_user.birthday %>
+              <br/>
+              <i class="glyphicon glyphicon-book"></i><%= current_user.interests %></p>
           </div>
         </div>
+      </div>
+    </div>
     <div class="col-xs-12 col-sm-6 col-md-6">
       <h3 class="text-center text-primary">
 
@@ -51,17 +50,72 @@
                 </div>
               </div>
             </div>
-
         <% end %>
+        <%= link_to 'New Post', new_post_path %>
       </div>
-      <br>
 
-      <%= link_to 'New Post', new_post_path %>
 
     </div>
   </div>
 </div>
 
+<div class="inner"></div>
+</br>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            All Users
+          </h3>
+        </div>
+        <% for user in @users %>
+            <% if user.id != current_user.id %>
+                <div class="panel-body">
+                  <%= h user.name %>
+                  (<%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>)
+                </div>
+            <% end %>
+        <% end %>
+      </div>
+      <br>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Friends
+          </h3>
+        </div>
+        <% for friendship in current_user.friendships %>
+            <div class="panel-body">
+              <li><%= h friendship.friend.name %></li>
+              (<%= link_to "remove", friendship, :method => :delete %>)
+            </div>
+        <% end %>
+      </div>
+      <br>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Friended by Other Users
+          </h3>
+        </div>
+        <% for user in current_user.inverse_friends %>
+            <div class="panel-body">
+              <li><%= h user.name %></li>
+            </div>
+        <% end %>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
 
 
 
