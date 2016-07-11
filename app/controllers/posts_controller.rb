@@ -8,9 +8,9 @@ class PostsController < ApplicationController
       redirect_to new_user_session_path
     end
     @posts = Post.all
+    @users = User.all
 
   end
-
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.new(post_params)
-    @email = current_user.email
+
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
